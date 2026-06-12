@@ -16,3 +16,28 @@ FeedFlow is a mobile application that helps users personalize their Instagram fe
 - **Deployment:** Microsoft Azure DevOps pipelines
 
 ## 📂 Project Structure
+FeedFlow/
+├── frontend/ (React Native app)
+├── backend/ (FastAPI + PostgreSQL + automation)
+├── devops/ (Azure pipeline)
+└── README.md
+
+Code
+
+## ⚙️ Setup
+
+### Frontend
+```bash
+cd frontend
+npm install
+expo start
+Backend
+bash
+cd backend
+pip install -r requirements.txt
+uvicorn main:app --reload
+Automation
+bash
+cd backend/automation
+npm install puppeteer
+python selenium_tests.py
