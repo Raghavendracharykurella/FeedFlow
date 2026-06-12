@@ -1,0 +1,30 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+
+- script: pip install -r backend/requirements.txt
+  displayName: 'Install Python dependencies'
+
+- script: pytest backend/
+  displayName: 'Run backend tests'
+
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.x'
+
+- script: npm install
+  workingDirectory: backend/automation
+  displayName: 'Install Puppeteer dependencies'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'YOUR-SUBSCRIPTION'
+    appName: 'FeedFlowApp'
+    package: 'backend'
